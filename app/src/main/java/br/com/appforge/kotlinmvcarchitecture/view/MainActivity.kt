@@ -1,5 +1,6 @@
 package br.com.appforge.kotlinmvcarchitecture.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.appforge.kotlinmvcarchitecture.controller.PostController
@@ -32,6 +33,10 @@ class MainActivity : AppCompatActivity() {
             }
              */
             postController.getUsers()
+        }
+
+        binding.btnNavigate.setOnClickListener {
+            startActivity(Intent(this,FeedActivity::class.java))
         }
     }
 
