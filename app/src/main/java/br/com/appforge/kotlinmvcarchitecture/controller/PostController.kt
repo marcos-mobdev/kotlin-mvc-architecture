@@ -1,10 +1,10 @@
 package br.com.appforge.kotlinmvcarchitecture.controller
 
-import br.com.appforge.kotlinmvcarchitecture.model.Post
 import br.com.appforge.kotlinmvcarchitecture.model.api.PostAPI
 import br.com.appforge.kotlinmvcarchitecture.view.MainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -14,9 +14,11 @@ class PostController (
 ){
     private val postApi = PostAPI()
 
-    fun getUsers(){
+    private val coroutine = CoroutineScope(Dispatchers.IO)
 
-        CoroutineScope(Dispatchers.IO).launch {
+    fun getPosts(){
+
+        coroutine.launch {
             //1) Business rules
             val list = postApi.getPosts()
 
@@ -25,8 +27,10 @@ class PostController (
                 mainActivity.showPosts(list)
             }
         }
+    }
 
-
+    fun onDestroy(){
+        coroutine.cancel()
     }
 
 }

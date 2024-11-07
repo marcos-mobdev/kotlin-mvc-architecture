@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import br.com.appforge.kotlinmvcarchitecture.controller.PostController
 import br.com.appforge.kotlinmvcarchitecture.databinding.ActivityMainBinding
 import br.com.appforge.kotlinmvcarchitecture.model.Post
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
@@ -17,27 +15,28 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    //Instance of Controller
     private lateinit var postController: PostController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        //Initializing Controller
         postController = PostController(this)
-        //userController.getUsers() //Active
 
-        binding.btnGetUsers.setOnClickListener {
-            /*
-            CoroutineScope(Dispatchers.IO).launch {
-                postController.getUsers()
-            }
-             */
-            postController.getUsers()
+        binding.btnGetPosts.setOnClickListener {
+            postController.getPosts()
         }
 
         binding.btnNavigate.setOnClickListener {
             startActivity(Intent(this,FeedActivity::class.java))
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        postController.onDestroy()
     }
 
     //Passive
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             postsText += "${post.id} - ${post.body}\n"
         }
         withContext(Dispatchers.Main){
-            binding.textResult.text = postsText
+            binding.textPosts.text = postsText
         }
 
     }

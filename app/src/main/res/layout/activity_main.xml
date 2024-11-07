@@ -8,7 +8,7 @@
     tools:context=".view.MainActivity">
 
     <Button
-        android:id="@+id/btnGetUsers"
+        android:id="@+id/btnGetPosts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textResult"
+        android:id="@+id/textPosts"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGetUsers" />
+        app:layout_constraintTop_toBottomOf="@+id/btnGetPosts" />
 
     <Button
         android:id="@+id/btnNavigate"
@@ -39,7 +39,7 @@
         android:text="To Feed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnGetUsers"
+        app:layout_constraintStart_toEndOf="@+id/btnGetPosts"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
